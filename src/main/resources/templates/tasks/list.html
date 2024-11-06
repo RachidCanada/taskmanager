@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionnaire de Tâches</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1>Gestionnaire de Tâches</h1>
+        <nav>
+            <a th:href="@{/tasks}">Liste des Tâches</a>
+            <a th:href="@{/tasks/new}" class="btn">Nouvelle Tâche</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h2>Liste des Tâches</h2>
+		<table>
+		    <thead>
+		        <tr>
+		            <th>Titre</th>
+		            <th>Description</th>
+		            <th>Date</th>
+		            <th>Statut</th>
+		            <th>Actions</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr th:each="task : ${tasks}">
+		            <td th:text="${task.titre}"></td>
+		            <td th:text="${task.description}"></td>
+		            <td th:text="${task.date}"></td>
+		            <td th:text="${task.statut}"></td>
+		            <td>
+		                <a th:href="@{/tasks/edit/{id}(id=${task.id})}">Modifier</a> |
+		                <a th:href="@{/tasks/delete/{id}(id=${task.id})}">Supprimer</a>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+    </main>
+</body>
+</html>
